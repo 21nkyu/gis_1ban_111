@@ -9,9 +9,10 @@
 }
 
 .pragmatic_footer_logo{
-    margin-top: 2rem;
+    margin: 1.5rem 0; font-family: 'Black Han Sans', sans-serif;
+
 }
 
 .pragmatic_footer_button{
-    margin: 1.5rem 0; font-family: 'Black Han Sans', sans-serif;
+    margin-top: 2rem;
 }
