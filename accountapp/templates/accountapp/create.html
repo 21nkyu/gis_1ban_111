@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="text-center">
+        <div>
+            <h2>Create Account</h2>
+        </div>
+        <div>
+            <form action="{% url 'accountapp:create' %}"> {# url acc~app 의 create로 요청을 보내라 #}
+                {% csrf_token %}   {# ?? #}
+                {{ form }}
+                <input type="submit" class="btn btn-dark " >
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
