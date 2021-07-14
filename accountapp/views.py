@@ -12,7 +12,7 @@ from accountapp.models import HelloWorld
 
 def hello_world(request):
 
-    if request.method == 'POST':
+    if request.method == 'POST':        #post get중 post로 오면
 
         temp = request.POST.get('hello_world_input')
 

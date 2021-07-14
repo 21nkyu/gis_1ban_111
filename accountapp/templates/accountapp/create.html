@@ -3,14 +3,17 @@
 {% block content %}
 
     <div class="text-center">
-        <div>
-            <h2>Create Account</h2>
+        <div class="m-5">
+            <h4>Sign up</h4>
         </div>
         <div>
             <form action="{% url 'accountapp:create' %}"> {# url acc~app 의 create로 요청을 보내라 #}
-                {% csrf_token %}   {# ?? #}
+                {% csrf_token %}   {# ??보안#}
                 {{ form }}
-                <input type="submit" class="btn btn-dark " >
+                <div class="m-4"> {# 부모넓이 상송 #}
+                    <input type="submit"
+                           class="btn btn-dark rounded-pill px-5" > {# 출력버튼 px-5수평방향향#}
+                </div>
             </form>
         </div>
 
