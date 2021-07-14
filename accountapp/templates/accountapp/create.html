@@ -7,7 +7,7 @@
             <h4>Sign up</h4>
         </div>
         <div>
-            <form action="{% url 'accountapp:create' %}"> {# url acc~app 의 create로 요청을 보내라 #}
+            <form action="{% url 'accountapp:create' %}" method="post"> {# url acc~app 의 create로 요청을 보내라 #}
                 {% csrf_token %}   {# ??보안#}
                 {{ form }}
                 <div class="m-4"> {# 부모넓이 상송 #}
