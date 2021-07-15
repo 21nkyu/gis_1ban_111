@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+    <div class="text-center mw-500 m-auto">
+        <div class="m-5">
+            <h4>Update Info</h4>
+        </div>
+        <div>
+            <form action="{% url 'accountapp:update' pk=target_user.pk %}" method="post"> {# url acc~app 의 create로 요청을 보내라 //어떤객체를 수정할 것인가/ 수정할 유저의 pk  #}
+                {% csrf_token %}   {# ??보안#}
+                {% bootstrap_form form %}
+                <div class="m-5"> {# 부모넓이 상송 #}
+                    <input type="submit"
+                           class="btn btn-dark rounded-pill px-5" > {# 출력버튼 px-5수평방향향#}
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
