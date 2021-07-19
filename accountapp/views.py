@@ -12,22 +12,27 @@ from accountapp.models import HelloWorld
 
 
 def hello_world(request):
-
-    if request.method == 'POST':        #post get중 post로 오면
-
-        temp = request.POST.get('hello_world_input')
-
-        new_hello_world = HelloWorld()
-        new_hello_world.text = temp
-        new_hello_world.save()
-
-        return HttpResponseRedirect(reverse('accountapp:hello_world'))
+    if request.user.is_authenticated:#분기문 추가 is_authen 로그인여부 확인
 
 
+
+        if request.method == 'POST':        #post get중 post로 오면
+
+            temp = request.POST.get('hello_world_input')
+
+            new_hello_world = HelloWorld()
+            new_hello_world.text = temp
+            new_hello_world.save()
+
+            return HttpResponseRedirect(reverse('accountapp:hello_world'))
+
+
+        else:
+            hello_world_list = HelloWorld.objects.all()
+            return render(request, 'accountapp/hello_world.html',
+                          context={'hello_world_list': hello_world_list})
     else:
-        hello_world_list = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html',
-                      context={'hello_world_list': hello_world_list})
+        return HttpResponseRedirect(reverse('accountapp:login'))
 
 
 
@@ -61,9 +66,33 @@ class AccountUpdateView(UpdateView):
     success_url = reverse_lazy('accountapp:hello_world')#일단은 헬로우월드
     template_name = 'accountapp/update.html'
 
+    def get(self, request, *args, **kwargs):  #선택적 매개변수
+        if request.user.is_authenticated:
+            return super().get(request, *args, **kwargs) #부모의 get메서드를 그대로 실행해라
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+    def post(self, request, *args, **kwargs):  #선택적 매개변수
+        if request.user.is_authenticated:
+            return super().post(request, *args, **kwargs) #부모의 get메서드를 그대로 실행해라
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
 class AccountDeleteView(DeleteView):
     model = User
     #탈퇴 폼클래스 필요 없음.
     context_object_name = 'target_user' #어떻게 사용할지 어떤객체를 지울 것인지
     cuccess_url = reverse_lazy('accountapp:hello_world') #탈퇴 완료시 연결 url
     template_name = 'accountapp/delete.html' #어떤식으로 렌더링// urls.py에서 어떻게 접근할건지
+
+    def get(self, request, *args, **kwargs):  #선택적 매개변수
+        if request.user.is_authenticated:
+            return super().get(request, *args, **kwargs) #부모의 get메서드를 그대로 실행해라
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+    def post(self, request, *args, **kwargs):  #선택적 매개변수
+        if request.user.is_authenticated:
+            return super().post(request, *args, **kwargs) #부모의 get메서드를 그대로 실행해라
+        else:
+            return HttpResponseRedirect(reverse('accountapp:login'))
