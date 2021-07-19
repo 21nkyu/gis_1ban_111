@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{# {% load bootstrap4 %} form 사용하지 않음#}
+
+{% block content %}
+
+    <div class="text-center mw-500 m-auto">
+        <div class="m-5">
+            <h4>Quit</h4>
+        </div>
+        <div>
+            <form action="{% url 'accountapp:delete' pk=target_user.pk %}" method="post"> {# url acc~app 의 create로 요청을 보내라 #}
+                {% csrf_token %}   {# ??보안#}
+{#                {% bootstrap_form form %}#}
+                <div class="m-5"> {# 부모넓이 상송 #}
+                    <input type="submit"
+                           class="btn btn-danger rounded-pill px-5" > {# 출력버튼 px-5수평방향향#}
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
