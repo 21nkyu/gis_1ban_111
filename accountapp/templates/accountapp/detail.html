@@ -9,15 +9,19 @@
         <div>
             {{ target_user.date_joined }}
         </div>
+
+        {% if user == target_user %}
+
         <div>
-            <a href="{% url 'accountapp:update' pk=user.pk %}">
+            <a href="{% url 'accountapp:update' pk=target_user.pk %}">
                     Update Info
             </a>{# 나의정보수정페이지 이기 때문에 user의 plk #}
         </div>
         <div>
-            <a href="{% url 'accountapp:delete' pk=user.pk %}">
+            <a href="{% url 'accountapp:delete' pk=target_user.pk %}">
                 Quit
             </a>{# 나의정보수정페이지 이기 때문에 user의 plk #}
         </div>
+        {% endif %}
     </div>
 {% endblock %}

@@ -13,7 +13,7 @@ urlpatterns = [
 
     path('logout/', LogoutView.as_view(), name='logout'),
 
-    path('create/', AccountCreateView.as_view(), name='create'), #class에서 함수를 뱉어주는 mothod = as_view
+    path('create/', AccountCreateView.as_view(), name='create'), #class에서 함수를 뱉어주는 mothod = as_view  C R U D 패턴
 
     path('detail/<int:pk>', AccountDetailView.as_view(), name='detail'),#detail로 갔을때 로직을 실행해주어라 (트리거), pk primary key 고유값
 

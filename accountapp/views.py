@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from accountapp.forms import AccountCreationForm
 from accountapp.models import HelloWorld
 
 
@@ -55,7 +56,7 @@ class AccountDetailView(DetailView):
 
 class AccountUpdateView(UpdateView):
     model = User                    #무엇을 업데이트 할 것인지
-    form_class = UserCreationForm   #수정할 내용을 넣어준다. 따로 접근하지 않아도 됨
+    form_class = AccountCreationForm   #1수정할 내용을 넣어준다. 따로 접근하지 않아도 됨 2커스터마이징을 해야함 상속 받아서
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:hello_world')#일단은 헬로우월드
     template_name = 'accountapp/update.html'
