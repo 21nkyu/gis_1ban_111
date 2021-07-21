@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render
 
 # Create your views here.
@@ -67,16 +67,16 @@ class AccountUpdateView(UpdateView):
     template_name = 'accountapp/update.html'
 
     def get(self, request, *args, **kwargs):  #선택적 매개변수
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and self.get_object() == request.user: #self =accountview의객체? 계정객체 get_object == target_user
             return super().get(request, *args, **kwargs) #부모의 get메서드를 그대로 실행해라
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
     def post(self, request, *args, **kwargs):  #선택적 매개변수
-        if request.user.is_authenticated:
+        if request.user.is_authenticatedand and self.get_object() == request.user:
             return super().post(request, *args, **kwargs) #부모의 get메서드를 그대로 실행해라
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
 class AccountDeleteView(DeleteView):
     model = User
@@ -86,13 +86,13 @@ class AccountDeleteView(DeleteView):
     template_name = 'accountapp/delete.html' #어떤식으로 렌더링// urls.py에서 어떻게 접근할건지
 
     def get(self, request, *args, **kwargs):  #선택적 매개변수
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and self.get_object() == request.user: #self =accountview의객체? 계정객체 get_object == target_user
             return super().get(request, *args, **kwargs) #부모의 get메서드를 그대로 실행해라
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
     def post(self, request, *args, **kwargs):  #선택적 매개변수
-        if request.user.is_authenticated:
+        if request.user.is_authenticatedand and self.get_object() == request.user:
             return super().post(request, *args, **kwargs) #부모의 get메서드를 그대로 실행해라
         else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
