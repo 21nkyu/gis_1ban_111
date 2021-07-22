@@ -17,5 +17,6 @@ class Profile(models.Model): # Model이라는 클래스를 상속받아 사용�
     # null 대화명을 적지 않아도 된다.
 
     #db에 반영 마이그레이션해줘야한다 models.py에서 변화를 찾는다
-    #python manage.py makemigrations 찾는다
-    #python manage.py migrate          적용한다
+    #pip install pillow
+    #python manage.py makemigrations 변화점을 찾는다
+    #python manage.py migrate 적용한다
