@@ -146,7 +146,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-MEDIA_URL = '/MEDIA/'     #저 url을 받았을 때 media file들을 저장한다
+MEDIA_URL = '/media/'     #저 url을 받았을 때 media file들을 저장한다
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
