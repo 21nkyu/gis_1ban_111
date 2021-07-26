@@ -8,7 +8,10 @@
             <h4>Create Profile</h4>
         </div>
         <div>
-            <form action="{% url 'profileapp:create' %}" method="post"> {# url acc~app 의 create로 요청을 보내라 #}
+            <form action="{% url 'profileapp:create' %}"
+                  enctype="multipart/form-data"
+                  method="post"> {# url acc~app 의 create로 요청을 보내라 #}
+
                 {% csrf_token %}   {# ??보안#}
                 {% bootstrap_form form %}
                 <div class="m-5"> {# 부모넓이 상속 #}
