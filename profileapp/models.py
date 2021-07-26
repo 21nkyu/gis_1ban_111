@@ -5,7 +5,7 @@ from django.db import models
 
 class Profile(models.Model): # Model이라는 클래스를 상속받아 사용한다.
     user = models.OneToOneField(User, on_delete=models.CASCADE,
-                                related_name='profile')
+                                related_name='profile')  #related_name //detail.html에서 호출하는 이름이 된다.
 
     image = models.ImageField(upload_to='profile/', null=True)
     nickname = models.CharField(max_length=30, unique=True)

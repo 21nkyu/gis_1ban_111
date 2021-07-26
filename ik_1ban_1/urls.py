@@ -13,11 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accountapp.urls')),
-    path('profiles/', include('profileapp.urls')) #http 12903810293/profile/urls
-]
+    path('profiles/', include('profileapp.urls')), #http 12903810293/profile/urls
+
+] + static(settings.MEDIA_URL, document_roots=settings.MEDIA_ROOT)  #파일경로 이기 때문에 별도로 설정 개발환경에서 미디어를 이용할 수 있음

@@ -4,7 +4,19 @@
 
     <div class="text-center mw-500 m-auto">
         <div class="m-5">
-            <h4>{{ target_user }}</h4>
+            {% if target_user.profile %}
+                <img src ="{{ target_user.profile.image.url }}"
+                     class="profile_image m-4"
+                     alt="profile image"> {# alt 이미지를 안받을 때 대체로 넣는 것 #}
+                <h2 class="NNS_B">{{ target_user.profile.nickname }}</h2>
+                <h5>{{ target_user.profile.message }}</h5>
+            {% else %}
+            <h2 class="NNS_B">
+                <a herf="{% url 'profileapp:create' %}">
+                    Creation Profile
+                </a>
+            </h2>
+            {% endif %}
         </div>
         <div>
             {{ target_user.date_joined }}
