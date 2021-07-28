@@ -38,8 +38,11 @@ def hello_world(request):
 class AccountCreateView(CreateView):        #createview 상속
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:hello_world') #class에서는 reverse_lazy를 사용한다. (reverse와 같다)
+    # success_url = reverse_lazy('accountapp:hello_world') #class에서는 reverse_lazy를 사용한다. (reverse와 같다)
     template_name = 'accountapp/create.html'
+
+    def get_success_url(self):
+        return reverse('accountapp:detail', kwargs={'pk': self.object.pk})   #self = target_user//profile이 아님
 
 
 class AccountDetailView(DetailView):
@@ -55,8 +58,11 @@ class AccountUpdateView(UpdateView):
     model = User                    #무엇을 업데이트 할 것인지
     form_class = AccountCreationForm   #1수정할 내용을 넣어준다. 따로 접근하지 않아도 됨 2커스터마이징을 해야함 상속 받아서
     context_object_name = 'target_user'
-    success_url = reverse_lazy('accountapp:hello_world')#일단은 헬로우월드
+    # success_url = reverse_lazy('accountapp:hello_world')#일단은 헬로우월드
     template_name = 'accountapp/update.html'
+
+    def get_success_url(self):
+        return reverse('accountapp:detail', kwargs={'pk': self.object.pk})
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
