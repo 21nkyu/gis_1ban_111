@@ -8,7 +8,15 @@
                 <img src ="{{ target_user.profile.image.url }}"
                      class="profile_image m-4"
                      alt="profile image"> {# alt 이미지를 안받을 때 대체로 넣는 것 #}
-                <h2 class="NNS_B">{{ target_user.profile.nickname }}</h2>
+                <h2 class="NNS_B">
+                    {{ target_user.profile.nickname }}
+                        {%  if user == target_user %}
+                            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                                edit
+                                {# 뒤에 누구를 찾을 것인지를 생각해보기 target_profile이 아님#}
+                            </a>
+                        {%  endif %}
+                </h2>
                 <h5>{{ target_user.profile.message }}</h5>
             {% else %}
             <h2 class="NNS_B">
