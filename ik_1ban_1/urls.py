@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accountapp.urls')),
     path('profiles/', include('profileapp.urls')), #http 12903810293/profile/urls
+    path('articles/', include('articleapp.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  #파일경로 이기 때문에 별도로 설정 개발환경에서 미디어를 이용할 수 있음
