@@ -11,7 +11,8 @@
                 <h2 class="NNS_B">
                     {{ target_user.profile.nickname }}
                         {%  if user == target_user %}
-                            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}"
+                               class="material-icons round_button" >
                                 edit
                                 {# 뒤에 누구를 찾을 것인지를 생각해보기 target_profile이 아님#}
                             </a>
@@ -20,7 +21,7 @@
                 <h5>{{ target_user.profile.message }}</h5>
             {% else %}
             <h2 class="NNS_B">
-                <a herf="{% url 'profileapp:create' %}">
+                <a href="{% url 'profileapp:create' %}">
                     Creation Profile
                 </a>
             </h2>
