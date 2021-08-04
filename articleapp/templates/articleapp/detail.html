@@ -17,7 +17,11 @@
             <div>
                 <a href="{% url 'articleapp:update' pk=target_article.pk %}"
                     class="btn btn-success rounded-pill px-5">
-                    Update   {# 패딩 내부 마진 5 px #}
+                    Update   {# 패딩 내부 패딩 마진 5 px #}
+                </a>
+                <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
+                    class="btn btn-danger rounded-pill px-5">
+                    Delete
                 </a>
             </div>
         </div>

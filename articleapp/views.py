@@ -1,22 +1,30 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
+from decorators import decorator
 
-
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm
-    success_url = reverse_lazy('accountapp:hello_world')
+    # success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'articleapp/cteate.html'
 
     def form_valid(self, form):
         form.instance.writer = self.request.user
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk':self.object.pk})
 
 class ArticleDetailView(DetailView):
     model = Article
@@ -25,6 +33,8 @@ class ArticleDetailView(DetailView):
     template_name = 'articleapp/detail.html'
     #이제 path 설정 html만들기기
 
+@method_decorator(article_ownership_required, 'get')
+@method_decorator(article_ownership_required, 'post')
 class ArticleUpdateView(UpdateView):
     model = Article
     # 어떤값 설정 할건지 form을 받는다
@@ -35,6 +45,14 @@ class ArticleUpdateView(UpdateView):
     #템플릿 어떤것을 사용할 것이냐
     template_name = 'articleapp/update.html'
     #routing을 해준다 urls
-    def get_success_url(self):
-        return reverse('articleapp:detail', kwargs={'pk':self.object.pk})
+    def get_success_url(self):                       #어떤특정 계시글로 가라
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
     # kwargs는 딕셔너리
+
+@method_decorator(article_ownership_required, 'get')
+@method_decorator(article_ownership_required, 'post')
+class ArticleDeleteView(DeleteView):
+    model = Article
+    context_object_name = 'target_article'
+    success_url = reverse_lazy('articleapp:list') #글을 지욱나면 갈곳이 없기 때문에
+    template_name = 'articleapp/delete.html'
