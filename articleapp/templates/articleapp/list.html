@@ -42,5 +42,17 @@
 {# 페이지네이션 버튼 만들기 , 공식 문서를 참고 https://docs.djangoproject.com/en/3.2/ref/paginator/#page-class #}
     {% include 'snippets/pagination.html' %}
 
+    <div class="text-center">
+        <a href="{% url 'articleapp:create' %}"
+            class="btn btn-dark rounded-pill material-icons">
+            brush
+        </a>
+        <a href="{% url 'articleapp:create' %}"
+            class="btn btn-outline-dark rounded-pill px-5">
+            Create Article
+        </a>
+
+    </div>
+
 
 {% endblock %}
