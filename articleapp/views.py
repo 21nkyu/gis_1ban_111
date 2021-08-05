@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
@@ -56,3 +56,9 @@ class ArticleDeleteView(DeleteView):
     context_object_name = 'target_article'
     success_url = reverse_lazy('articleapp:list') #글을 지욱나면 갈곳이 없기 때문에
     template_name = 'articleapp/delete.html'
+
+class ArticleListView(ListView):
+    model = Article
+    context_object_name = 'article_list'        #디테일 단일개체 타겟 아티클 여기서는 리스트름 담고 있는
+    template_name = 'articleapp/list.html'     #로렌픽섬 리스트 그대사용 내용은 수정 할서임
+    paginate_by = 2
