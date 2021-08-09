@@ -57,6 +57,15 @@
     margin: 2rem 0;
 }
 
+.comment_box {
+    border: solid;
+    border-color: dimgray;
+    text-align: left;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    font-size: 1.1rem;">
+}
 
 
 

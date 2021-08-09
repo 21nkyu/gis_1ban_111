@@ -37,6 +37,21 @@
         <hr>
         <div class="text-center my-4">
             {# 댓글이 들어갈 예정임 #}
+            {% for comment in target_article.comment.all %} {# 타겟아티클에 있는 모든 코멘트를 가져오겠다related_name='comment' #}
+                <div class="comment_box">
+                    <div>
+                        <span style="font-size: 1.3rem;" class="NNS_B">
+                            {{ comment.writer.profile.nickname }}
+                        </span>
+                        <span>{{ comment.created_at }}</span>
+                    </div>
+                    <div class="my-2">
+                        <p>{{ comment.content }}</p>
+                    </div>
+                </div>
+
+            {% endfor %}
+
             {% include 'commentapp/create.html' %}
         </div>
 
