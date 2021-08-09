@@ -5,10 +5,12 @@ from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
+from django.views.generic.edit import FormMixin
 
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
+from commentapp.forms import CommentCreationForm
 from decorators import decorator
 
 @method_decorator(login_required, 'get')
@@ -26,8 +28,9 @@ class ArticleCreateView(CreateView):
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(DetailView, FormMixin):   #detailview임에도 create처럼 뭔가를 만들 수 있다
     model = Article
+    form_class = CommentCreationForm
     context_object_name = 'target_article'
     #만드는 것도 업고 바로 템플릿
     template_name = 'articleapp/detail.html'
