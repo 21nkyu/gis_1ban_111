@@ -16,5 +16,5 @@ class Comment(models.Model):
     #content  작문의 데이터 텍스트 필드 뭘 넣어야 만든다
     content = models.TextField(null=False)
 
-    #auto 자동으로 생성해줌
+    #auto 자동으로 생성해줌ㅇㅇㅇㅇㅇㅇㅇㅇ
     created_at = models.DateTimeField(auto_now_add=True)
