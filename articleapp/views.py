@@ -13,6 +13,7 @@ from articleapp.models import Article
 from commentapp.forms import CommentCreationForm
 from decorators import decorator
 
+
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class ArticleCreateView(CreateView):
@@ -36,6 +37,7 @@ class ArticleDetailView(DetailView, FormMixin):   #detailview임에도 create처
     template_name = 'articleapp/detail.html'
     #이제 path 설정 html만들기기
 
+
 @method_decorator(article_ownership_required, 'get')
 @method_decorator(article_ownership_required, 'post')
 class ArticleUpdateView(UpdateView):
@@ -52,6 +54,7 @@ class ArticleUpdateView(UpdateView):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
     # kwargs는 딕셔너리
 
+
 @method_decorator(article_ownership_required, 'get')
 @method_decorator(article_ownership_required, 'post')
 class ArticleDeleteView(DeleteView):
@@ -64,4 +67,4 @@ class ArticleListView(ListView):
     model = Article
     context_object_name = 'article_list'        #디테일 단일개체 타겟 아티클 여기서는 리스트름 담고 있는
     template_name = 'articleapp/list.html'     #로렌픽섬 리스트 그대사용 내용은 수정 할서임
-    paginate_by = 2
+    paginate_by = 20
