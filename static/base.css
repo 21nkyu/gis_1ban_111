@@ -67,6 +67,13 @@
     font-size: 1.1rem;">
 }
 
+@media screen and (max-width: 500px) {
+    html {
+        /* default font-size = 16px (13px면 20%프로정도를 줄인다) 너비높이 rem이 모두 적용되어 반응형이 어느정도 구현된다*/
+        font-size: 13px;
+    }
+}
 
+/*@media(미디어쿼리) 우리가 접속하는 기기의 정보?  기기가 500px이하일 때 이 css태크가 적용하도록 해줄것이다 rem =  rootem */
 
 /*수평 수직 위치 그림자 위치 그림자 색깔*/
