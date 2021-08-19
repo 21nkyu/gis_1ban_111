@@ -15,7 +15,7 @@ from projectapp.models import Project
 class ProjectCreateView(CreateView):
     model = Project
     form_class = ProjectCreationForm
-    success_url = reverse_lazy('articleapp:list')#디테일뷰가 없으니 임시로
+    # success_url = reverse_lazy('articleapp:list')#디테일뷰가 없으니 임시로
     template_name = 'projectapp/create.html' #에서 시각화 할거다
 
     def get_success_url(self):
@@ -29,9 +29,9 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
 
     paginate_by = 20
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs):  #오버라이드
         article_list = Article.objects.filter(project=self.object) #해당프로젝트 글만 추려낸다
-        return super().get_context_data(object_list=article_list, **kwargs)
+        return super().get_context_data(object_list=article_list, **kwargs) #글을 내보낸다
 
 
 class ProjectListView(ListView):
