@@ -29,7 +29,6 @@ def hello_world(request):
 
         return HttpResponseRedirect(reverse('accountapp:hello_world'))
 
-
     else:
         hello_world_list = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html',
@@ -57,7 +56,7 @@ class AccountDetailView(DetailView, MultipleObjectMixin):
 
     def get_context_data(self, **kwargs):
         article_list = Article.objects.filter(writer=self.object)
-        return super().get_context_data(object_lsit=article_list,
+        return super().get_context_data(object_list=article_list,
                                         **kwargs)
 
 
