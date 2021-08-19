@@ -8,6 +8,7 @@ from django.views.generic.list import MultipleObjectMixin
 from articleapp.models import Article
 from projectapp.forms import ProjectCreationForm
 from projectapp.models import Project
+from subscribeapp.models import Subscription
 
 
 @method_decorator(login_required, 'get')
@@ -30,8 +31,21 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
     paginate_by = 20
 
     def get_context_data(self, **kwargs):  #오버라이드
+        user = self.request.user
+        project = self.object
+
+        subscription = Subscription.objects.filter(user=user,
+                                                   project=project)
+
+        if subscription.exists():
+            subscription = 1
+        else:
+            subscription = None
+
         article_list = Article.objects.filter(project=self.object) #해당프로젝트 글만 추려낸다
-        return super().get_context_data(object_list=article_list, **kwargs) #글을 내보낸다
+        return super().get_context_data(object_list=article_list,
+                                        subscription=subscription,
+                                        **kwargs) #글을 내보낸다
 
 
 class ProjectListView(ListView):
