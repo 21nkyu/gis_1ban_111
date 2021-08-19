@@ -25,5 +25,6 @@ urlpatterns = [
     path('articles/', include('articleapp.urls')),
     path('comments/', include('commentapp.urls')),
     path('projects/', include('projectapp.urls')),#프로젝트 앱의 url.py에서 분기
+    path('subscribes/', include('subscribeapp.url')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  #파일경로 이기 때문에 별도로 설정 개발환경에서 미디어를 이용할 수 있음
