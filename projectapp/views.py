@@ -31,11 +31,11 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
     paginate_by = 20
 
     def get_context_data(self, **kwargs):  #오버라이드
-        user = self.request.user
+        user = self.request.user  #만약 로그인 되지 않았다면 유저가 식별 되지 않음, 비회원유저
         project = self.object
 
         subscription = Subscription.objects.filter(user=user,
-                                                   project=project)
+                                                   project=project)   #비로그인시 이정보를 찾을 수 없다
 
         if subscription.exists():
             subscription = 1
@@ -50,5 +50,7 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
 
 class ProjectListView(ListView):
     model = Project
+    context_object_name = 'project_list'
     template_name = 'projectapp/list.html'
+
     paginate_by = 20

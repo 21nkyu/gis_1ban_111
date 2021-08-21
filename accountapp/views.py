@@ -63,7 +63,6 @@ class AccountDetailView(DetailView, MultipleObjectMixin):
 has_ownership = [login_required, account_ownership_required]
 
 
-
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
 class AccountUpdateView(UpdateView):
@@ -75,6 +74,7 @@ class AccountUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('accountapp:detail', kwargs={'pk': self.object.pk})
+
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
