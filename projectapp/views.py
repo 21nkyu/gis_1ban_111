@@ -34,11 +34,9 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
         user = self.request.user  #만약 로그인 되지 않았다면 유저가 식별 되지 않음, 비회원유저
         project = self.object
 
-        subscription = Subscription.objects.filter(user=user,
-                                                   project=project)   #비로그인시 이정보를 찾을 수 없다
-
-        if subscription.exists():
-            subscription = 1
+        if user.is_authenticated:
+            subscription = Subscription.objects.filter(user=user,
+                                                       project=project)   #비로그인시 이정보를 찾을 수 없다
         else:
             subscription = None
 
