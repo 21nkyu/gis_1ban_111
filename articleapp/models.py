@@ -17,3 +17,5 @@ class Article(models.Model):
     content = models.TextField(null=True)  #testfield 긴텍스트
 
     created_at = models.DateField(auto_now_add=True, null=True)  #언제 작성된것인지 db자체적으로 저장될때 자동으로 할당해줘라
+
+    like = models.IntegerField(default=0) #모델의 안의 인티저 필드를 사용할것이다. 처음은 0
