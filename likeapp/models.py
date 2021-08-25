@@ -12,5 +12,6 @@ class LikeRecord(models.Model):
                                 related_name='like_record', null=False)
     #db단에 조건추가 한게시글에는 하나의 좋아요만 가능하도록
     # 유니크 하게 쌍으로 연결해준다
+
     class Meta:
         unique_together = ['user', 'article']

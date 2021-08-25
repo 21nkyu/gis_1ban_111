@@ -8,6 +8,16 @@
 
     <hr>
 
+    {% for message in messages %}
+        <div class="text-center">
+            <div class="btn btn-success rounded-pill px-5">
+                {{ message }}
+            </div>
+        </div>
+{#    장고 통합기능 이기때문에 모든messages는 접근가능하다 우리가 넣은 위치는 헤더 hr 그 밑임#}
+    {% endfor %}
+
+
     {% block content %}
     {% endblock %}
 

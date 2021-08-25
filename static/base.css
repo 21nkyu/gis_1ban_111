@@ -77,3 +77,12 @@
 /*@media(미디어쿼리) 우리가 접속하는 기기의 정보?  기기가 500px이하일 때 이 css태크가 적용하도록 해줄것이다 rem =  rootem */
 
 /*수평 수직 위치 그림자 위치 그림자 색깔*/
+
+a{
+    text-decoration: none;
+    color: black;
+}
+/*텍스트를 꾸미는 것을 하지 않겠다 text-decoration none 언더라인을 적용하지 않는다*/
+a:hover{
+    color: black;
+}
