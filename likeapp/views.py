@@ -39,7 +39,8 @@ class LikeArticleView(RedirectView): #구독앱을 만들면서 사용함
             db_transaction(user, article)
             messages.add_message(request, messages.SUCCESS, '좋아요가 반영되었습니다.')
         except ValidationError:
-            messages.add_message(request, messages.ERROR, '좋아요는 한번만 가능합니다.')  # get인자를 그대로 넘겨주고 , 원하는 level을 , 원하는 메세지
+            messages.add_message(request, messages.ERROR, '좋아요는 한번만 가능합니다.')
+        # (request(get인자를 그대로 넘겨주고) , 원하는 level을 , 원하는 메세지)
             return HttpResponseRedirect(reverse('articleapp:detail', kwargs={'pk': kwargs['article_pk']}))
 
         return super().get(request, *args, **kwargs)
