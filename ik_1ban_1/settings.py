@@ -168,7 +168,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-LOGIN_REDIRECT_URL = reverse_lazy('accountapp:hello_world')
+LOGIN_REDIRECT_URL = reverse_lazy('articleapp:list')
 # 어카운트앱 로그인 라우트로 가라
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 # 로그인이 성공했으면 어디로 갈지

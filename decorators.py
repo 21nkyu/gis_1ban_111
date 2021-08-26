@@ -14,7 +14,7 @@
 #
 #
 #
-# hello_world('Hello_World!')
+# a('a!')
 # #
 # width
 # hight

@@ -19,7 +19,7 @@ from decorators import decorator
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm
-    # success_url = reverse_lazy('accountapp:hello_world')
+    # success_url = reverse_lazy('accountapp:list')
     template_name = 'articleapp/cteate.html'
 
     def form_valid(self, form):

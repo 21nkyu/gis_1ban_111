@@ -14,7 +14,7 @@ from profileapp.models import Profile
 class ProfileCreateView(CreateView):
     model = Profile
     form_class = ProfileCreationForm
-    # success_url = reverse_lazy('accountapp:hello_world')
+    # success_url = reverse_lazy('accountapp:list')
     template_name = 'profileapp/create.html'
 
     def get_success_url(self):
@@ -31,7 +31,7 @@ class ProfileUpdateView(UpdateView):
     model = Profile
     form_class = ProfileCreationForm
     context_object_name = 'target_profile'  # 프로필이기때문에 이름을 이렇게 // 접근 할때 이 이름으로 접근한다
-    # success_url = reverse_lazy('accountapp:hello_world')
+    # success_url = reverse_lazy('accountapp:list')
     template_name = 'profileapp/update.html'
 
     def get_success_url(self):
