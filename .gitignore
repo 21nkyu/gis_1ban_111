@@ -87,3 +87,5 @@ staticfiles/
 
 gis_1ban_gcp
 gis_1ban_gcp.pub
+
+Dockerfile
