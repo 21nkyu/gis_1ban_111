@@ -85,4 +85,5 @@ media/
 
 staticfiles/
 
-gis_1ban.pem
+gis_1ban_gcp
+gis_1ban_gcp.pub
