@@ -7,6 +7,7 @@ services:
     volumes:
       - gis_1ban_static:/data/static/
       - gis_1ban_media:/data/media/
+      - gis_log:/var/log/nginx/
       - /home/adele7178/nginx.conf:/etc/nginx/nginx.conf
     ports:
     - 80:80
@@ -45,6 +46,7 @@ volumes:
   gis_1ban_static:
   gis_1ban_media:
   gis_mariadb:
+  gis_log:
 secrets:
   MARIADB_USER:
     external: true
